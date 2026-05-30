@@ -39,6 +39,7 @@ const RSVP = () => {
           ) : (
             <form className="rsvp-form" onSubmit={handleSubmit} name="rsvp" data-netlify="true">
               <input type="hidden" name="form-name" value="rsvp" />
+              <input type="hidden" name="diaper_size" value={localStorage.getItem('ezequiel_gift_size') || 'Não sorteado'} />
               <div className="form-group">
                 <label>Nome Completo</label>
                 <input 
