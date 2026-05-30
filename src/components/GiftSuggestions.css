@@ -1,0 +1,57 @@
+.gifts-section {
+  background-color: transparent;
+}
+
+.gifts-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  font-size: 1.1rem;
+}
+
+.gifts-intro h3 {
+  font-size: 2rem;
+  margin-top: 15px;
+  color: var(--secondary-color);
+}
+
+.gifts-subtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--text-muted);
+}
+
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gift-card {
+  text-align: center;
+  padding: 30px 20px;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gift-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-light);
+}
+
+.gift-icon {
+  margin-bottom: 20px;
+}
+
+.gift-size {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.gift-btn {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}

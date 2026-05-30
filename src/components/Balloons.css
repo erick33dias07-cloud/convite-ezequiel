@@ -1,0 +1,79 @@
+.balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Below the content wrapper */
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  animation: floatUp linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-60vh) rotate(5deg);
+  }
+  100% {
+    transform: translateY(-120vh) rotate(-5deg);
+  }
+}
+
+.balloon-body {
+  width: 60px;
+  height: 75px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  position: relative;
+  box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.2), inset 5px 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+.balloon-body::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 10px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.balloon-string {
+  width: 1px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+}
+
+/* Colors */
+.balloon.gold .balloon-body {
+  background-color: var(--secondary-color);
+}
+.balloon.gold .balloon-body::after {
+  background-color: var(--secondary-color);
+}
+
+.balloon.light-blue .balloon-body {
+  background-color: #6495ED;
+}
+.balloon.light-blue .balloon-body::after {
+  background-color: #6495ED;
+}
+
+.balloon.white .balloon-body {
+  background-color: #F8F9FA;
+}
+.balloon.white .balloon-body::after {
+  background-color: #F8F9FA;
+}
