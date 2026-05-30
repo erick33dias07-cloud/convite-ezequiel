@@ -8,8 +8,20 @@ const RSVP = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate API call
-    setTimeout(() => setSubmitted(true), 1000);
+    const diaperSize = localStorage.getItem('ezequiel_gift_size') || 'Não sorteado';
+    
+    const data = new URLSearchParams();
+    data.append('form-name', 'rsvp');
+    data.append('name', formData.name);
+    data.append('diaper_size', diaperSize);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data.toString()
+    })
+    .then(() => setSubmitted(true))
+    .catch(() => alert('Houve um erro ao enviar a confirmação. Tente novamente.'));
   };
 
   return (
@@ -25,7 +37,8 @@ const RSVP = () => {
               <p>Obrigado por celebrar este momento especial conosco.</p>
             </div>
           ) : (
-            <form className="rsvp-form" onSubmit={handleSubmit}>
+            <form className="rsvp-form" onSubmit={handleSubmit} name="rsvp" data-netlify="true">
+              <input type="hidden" name="form-name" value="rsvp" />
               <div className="form-group">
                 <label>Nome Completo</label>
                 <input 
