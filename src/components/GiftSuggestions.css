@@ -16,67 +16,148 @@
 }
 
 .roulette-container {
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 44px 32px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
 }
 
 .gift-icon {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
+/* ── Display area ─────────────────────────────────────── */
 .roulette-display {
-  min-height: 120px;
+  min-height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.roulette-placeholder {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Spinning ─────────────────────────────────────────── */
+.spin-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .roulette-text {
   font-family: var(--font-serif);
-  font-size: 4rem;
-  font-weight: bold;
-  color: var(--text-main);
-  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .roulette-text.spinning {
   color: var(--text-muted);
-  animation: pulse 0.1s infinite alternate;
+  animation: pulse 0.09s infinite alternate;
+}
+
+/* ── Result block ─────────────────────────────────────── */
+.result-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+}
+
+.result-block.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.result-label {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 .roulette-text.final {
-  color: var(--secondary-color);
+  background: linear-gradient(90deg, #FFE066 0%, #F5C71A 30%, #D4AF37 55%, #F5C71A 80%, #FFE066 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShine 4s linear infinite;
   display: inline-block;
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
 }
 
-.result-message {
-  margin-top: 10px;
-  font-size: 1.1rem;
+@keyframes goldShine {
+  to { background-position: 200% center; }
+}
+
+.result-size-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.result-tip {
+  font-size: 1rem;
   color: var(--text-muted);
+  margin: 0;
 }
 
-.roulette-placeholder {
-  font-size: 1.2rem;
+.result-reminder {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  color: var(--text-main);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 10px;
+  padding: 12px 16px;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.result-reminder strong {
+  color: var(--secondary-color);
+}
+
+/* ── Button ───────────────────────────────────────────── */
+.roulette-btn {
+  margin-top: 8px;
+}
+
+/* ── Footer note ──────────────────────────────────────── */
+.roulette-note {
+  margin-top: 14px;
+  font-size: 0.8rem;
   color: var(--text-muted);
+  opacity: 0.65;
+  max-width: 360px;
+  line-height: 1.5;
 }
 
+/* ── Animations ───────────────────────────────────────── */
 .spin-icon {
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.1); opacity: 1; }
+  0%   { transform: scale(1);    opacity: 0.7; }
+  100% { transform: scale(1.08); opacity: 1;   }
 }
