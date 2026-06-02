@@ -117,22 +117,6 @@
   margin: 0;
 }
 
-.result-reminder {
-  margin: 10px 0 0;
-  font-size: 1rem;
-  color: var(--text-main);
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 10px;
-  padding: 12px 16px;
-  line-height: 1.5;
-  width: 100%;
-}
-
-.result-reminder strong {
-  color: var(--secondary-color);
-}
-
 /* ── Button ───────────────────────────────────────────── */
 .roulette-btn {
   margin-top: 8px;

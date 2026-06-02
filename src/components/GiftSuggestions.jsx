@@ -92,9 +92,6 @@ const GiftSuggestions = () => {
                   <>
                     <p className="result-size-name">{info.label}</p>
                     <p className="result-tip">{info.tip}</p>
-                    <p className="result-reminder">
-                      🛍️ Traga um pacote de fralda <strong>{selectedSize}</strong> + lenços umedecidos!
-                    </p>
                   </>
                 )}
               </div>
