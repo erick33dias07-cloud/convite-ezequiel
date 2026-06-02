@@ -1,143 +1,181 @@
-.background-effects-container {
+/* ============================================================
+   BACKGROUND CANVAS — balões + estrelas (sempre atrás do conteúdo)
+   ============================================================ */
+
+/* Container fixo que cobre 100% da viewport o tempo todo,
+   independentemente do scroll da página.                      */
+.bg-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
+  inset: 0;                   /* top/right/bottom/left = 0   */
   z-index: -1;
+  pointer-events: none;
   overflow: hidden;
 }
 
-/* Stars Background */
-.stars-container {
+/* ── Camada de estrelas ─────────────────────────────────── */
+.stars-layer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 }
 
 .star {
   position: absolute;
-  background-color: #FFE57F;
   border-radius: 50%;
+  background: #FFE87F;
   animation: twinkle ease-in-out infinite;
-  opacity: 0.2;
 }
 
 @keyframes twinkle {
   0%, 100% {
-    opacity: 0.15;
-    transform: scale(0.8);
+    opacity: 0.12;
+    transform: scale(0.75);
   }
   50% {
-    opacity: 0.85;
-    transform: scale(1.2);
-    box-shadow: 0 0 6px rgba(255, 229, 127, 0.8);
+    opacity: 0.9;
+    transform: scale(1.3);
+    box-shadow: 0 0 5px rgba(255, 232, 127, 0.75);
   }
 }
 
-/* Balloons */
-.balloons-container {
+/* ── Camada de balões ───────────────────────────────────── */
+.balloons-layer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 }
 
-.balloon-wrapper {
+/* Wrapper 1 — controla a subida vertical */
+.balloon-float {
   position: absolute;
-  bottom: -200px;
+  /* Começa 220px abaixo da viewport */
+  bottom: -220px;
+  /* Sobe até 220px acima do topo: percorre toda a tela */
   animation: floatUp linear infinite;
+  will-change: transform;
 }
 
 @keyframes floatUp {
-  0% {
+  from {
     transform: translateY(0);
   }
-  100% {
-    transform: translateY(-135vh);
+  to {
+    /* 100vh = altura da viewport, +220px do offset inicial,
+       +200px para sair completamente pelo topo             */
+    transform: translateY(calc(-100vh - 420px));
   }
 }
 
+/* Wrapper 2 — escala estática (não anima, não conflita) */
+.balloon-scale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Wrapper 3 — balanço lateral */
 .balloon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  animation: sway 5s ease-in-out infinite alternate;
+  animation: sway ease-in-out infinite alternate;
 }
 
 @keyframes sway {
-  0% {
-    transform: rotate(-6deg) translateX(-8px);
-  }
-  100% {
-    transform: rotate(6deg) translateX(8px);
-  }
+  from { transform: rotate(-7deg) translateX(-10px); }
+  to   { transform: rotate( 7deg) translateX( 10px); }
 }
 
+/* ── Corpo do balão ─────────────────────────────────────── */
 .balloon-body {
-  width: 60px;
-  height: 74px;
+  width: 58px;
+  height: 72px;
   border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
   position: relative;
 }
 
-.balloon-highlight {
-  position: absolute;
-  top: 8px;
-  left: 11px;
-  width: 14px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.45);
-  border-radius: 50%;
-  transform: rotate(-30deg);
-  filter: blur(0.5px);
-}
-
+/* Nó inferior */
 .balloon-body::after {
   content: '';
   position: absolute;
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 10px;
+  width: 9px;
   height: 8px;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
+/* Reflexo de luz (efeito 3D) */
+.balloon-highlight {
+  position: absolute;
+  top: 9px;
+  left: 11px;
+  width: 13px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  filter: blur(0.5px);
+}
+
+/* ── Fio ondulado do balão ─────────────────────────────── */
 .balloon-string {
   width: 16px;
-  height: 90px;
-  margin-top: 2px;
-  opacity: 0.7;
+  height: 95px;
+  margin-top: 1px;
+  flex-shrink: 0;
 }
 
-/* 3D Color Gradients */
+/* ── Gradientes 3D por cor ──────────────────────────────── */
+
+/* Dourado */
 .balloon.gold .balloon-body {
-  background: radial-gradient(circle at 35% 35%, #FFF9D4 0%, #D4AF37 45%, #B8860B 80%, #705000 100%);
-  box-shadow: inset -4px -4px 12px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(212, 175, 55, 0.25);
+  background: radial-gradient(
+    circle at 34% 34%,
+    #FFFAE0 0%,
+    #F5C71A 35%,
+    #D4AF37 60%,
+    #8B6914 90%,
+    #5C4200 100%
+  );
+  box-shadow:
+    inset -4px -5px 14px rgba(0,0,0,0.38),
+    0 6px 18px rgba(212,175,55,0.22);
 }
 .balloon.gold .balloon-body::after {
-  background-color: #B8860B;
+  background: #9A6B00;
 }
 
+/* Azul royal */
 .balloon.light-blue .balloon-body {
-  background: radial-gradient(circle at 35% 35%, #E3F2FD 0%, #6495ED 45%, #2B57B8 80%, #10265E 100%);
-  box-shadow: inset -4px -4px 12px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(100, 149, 237, 0.25);
+  background: radial-gradient(
+    circle at 34% 34%,
+    #EBF5FF 0%,
+    #5C9EEC 35%,
+    #2B5BB8 60%,
+    #0F2D6E 90%,
+    #071847 100%
+  );
+  box-shadow:
+    inset -4px -5px 14px rgba(0,0,0,0.38),
+    0 6px 18px rgba(43,91,184,0.22);
 }
 .balloon.light-blue .balloon-body::after {
-  background-color: #2B57B8;
+  background: #1A3D8F;
 }
 
+/* Branco perolado */
 .balloon.white .balloon-body {
-  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 80%, #475569 100%);
-  box-shadow: inset -3px -3px 10px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(255, 255, 255, 0.1);
+  background: radial-gradient(
+    circle at 34% 34%,
+    #FFFFFF 0%,
+    #DDE6EF 45%,
+    #8EA8C0 75%,
+    #4A6680 100%
+  );
+  box-shadow:
+    inset -3px -4px 12px rgba(0,0,0,0.22),
+    0 6px 14px rgba(255,255,255,0.08);
 }
 .balloon.white .balloon-body::after {
-  background-color: #94A3B8;
+  background: #7A9BB5;
 }
-
