@@ -15,7 +15,6 @@ function App() {
 
   const handleEnter = () => {
     setTransitioning(true);
-    // Wait for the CSS transition, then reveal the invite
     setTimeout(() => {
       setShowInvite(true);
     }, 600);
@@ -23,17 +22,25 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Intro screen — fades out when transitioning */}
+
+      {/*
+       * Balloons ficam FORA de qualquer container com transform/filter.
+       * Qualquer pai com `transform` vira o containing-block de `position:fixed`,
+       * fazendo o bg-canvas ficar preso e cortado no meio da página.
+       * Aqui, app-container tem apenas `position: relative` — sem transforms.
+       */}
+      {showInvite && <Balloons />}
+
+      {/* Intro — fade-out ao clicar */}
       {!showInvite && (
         <div className={`intro-wrapper ${transitioning ? 'fading-out' : ''}`}>
           <Intro onEnter={handleEnter} />
         </div>
       )}
 
-      {/* Main invitation — fades in */}
+      {/* Convite — fade-in usando apenas opacity (sem transform) */}
       {showInvite && (
         <div className="invite-wrapper fade-in-invite">
-          <Balloons />
           <div className="content-wrapper">
             <Hero />
             <Countdown />
@@ -44,6 +51,7 @@ function App() {
           </div>
         </div>
       )}
+
     </div>
   );
 }
