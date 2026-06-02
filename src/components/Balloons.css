@@ -9,7 +9,8 @@
   inset: 0;                   /* top/right/bottom/left = 0   */
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
+  /* overflow: visible — deixa balões saírem pelo topo sem corte */
+  overflow: visible;
 }
 
 /* ── Camada de estrelas ─────────────────────────────────── */
@@ -46,9 +47,8 @@
 /* Wrapper 1 — controla a subida vertical */
 .balloon-float {
   position: absolute;
-  /* Começa 220px abaixo da viewport */
-  bottom: -220px;
-  /* Sobe até 220px acima do topo: percorre toda a tela */
+  /* Começa bem abaixo da viewport */
+  bottom: -250px;
   animation: floatUp linear infinite;
   will-change: transform;
 }
@@ -58,9 +58,13 @@
     transform: translateY(0);
   }
   to {
-    /* 100vh = altura da viewport, +220px do offset inicial,
-       +200px para sair completamente pelo topo             */
-    transform: translateY(calc(-100vh - 420px));
+    /*
+     * Distância = offset inicial (250px)
+     *           + altura da viewport (100vh)
+     *           + margem extra p/ sair pelo topo (300px)
+     * Total: percorre de 250px abaixo até 300px acima do topo
+     */
+    transform: translateY(calc(-100vh - 550px));
   }
 }
 
