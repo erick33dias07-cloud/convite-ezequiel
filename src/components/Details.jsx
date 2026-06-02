@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Calendar, Clock } from 'lucide-react';
+import { MapPin, Calendar, Clock, Shirt } from 'lucide-react';
 import './Details.css';
 
 const Details = () => {
@@ -13,9 +13,9 @@ const Details = () => {
               <Calendar size={32} color="var(--secondary-color)" />
             </div>
             <h3>Data</h3>
-            <p>22 de Junho</p>
+            <p>20 de Junho</p>
           </div>
-          
+
           <div className="detail-card glass-panel fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="icon-wrapper">
               <Clock size={32} color="var(--secondary-color)" />
@@ -30,6 +30,14 @@ const Details = () => {
             </div>
             <h3>Local</h3>
             <p>Rua Empresário Waldir Teixeira, 172<br/>Bairro Dom Silvério</p>
+          </div>
+
+          <div className="detail-card glass-panel fade-in" style={{ animationDelay: '0.6s' }}>
+            <div className="icon-wrapper">
+              <Shirt size={32} color="var(--secondary-color)" />
+            </div>
+            <h3>Traje</h3>
+            <p>Bege e/ou Branco</p>
           </div>
         </div>
       </div>
