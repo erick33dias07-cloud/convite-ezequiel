@@ -13,7 +13,7 @@ const Details = () => {
               <Calendar size={32} color="var(--secondary-color)" />
             </div>
             <h3>Data</h3>
-            <p>20 de Junho</p>
+            <p>12 de Julho</p>
           </div>
 
           <div className="detail-card glass-panel fade-in" style={{ animationDelay: '0.2s' }}>
