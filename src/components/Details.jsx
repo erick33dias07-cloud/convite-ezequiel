@@ -21,7 +21,7 @@ const Details = () => {
               <Clock size={32} color="var(--secondary-color)" />
             </div>
             <h3>Horário</h3>
-            <p>16:00</p>
+            <p>12:00</p>
           </div>
 
           <div className="detail-card glass-panel fade-in" style={{ animationDelay: '0.4s' }}>
@@ -29,7 +29,7 @@ const Details = () => {
               <MapPin size={32} color="var(--secondary-color)" />
             </div>
             <h3>Local</h3>
-            <p>Rua Empresário Waldir Teixeira, 172<br/>Bairro Dom Silvério</p>
+            <p>Rua Batalha dos Palmares, 25</p>
           </div>
 
           <div className="detail-card glass-panel fade-in" style={{ animationDelay: '0.6s' }}>

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Countdown.css';
 
 const Countdown = () => {
-  // Data do evento: 12 de Julho às 16:00
-  const targetDate = new Date('2026-07-12T16:00:00');
+  // Data do evento: 12 de Julho às 12:00
+  const targetDate = new Date('2026-07-12T12:00:00');
   const targetTime = targetDate.getTime();
   
   const [timeLeft, setTimeLeft] = useState({

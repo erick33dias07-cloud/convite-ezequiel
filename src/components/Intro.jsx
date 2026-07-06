@@ -115,7 +115,7 @@ const Intro = ({ onEnter }) => {
 
         {/* Date */}
         <p className={`intro-date ${phase >= 5 ? 'visible' : ''}`}>
-          12 de Julho · 16h
+          12 de Julho · 12h
         </p>
 
         {/* CTA Button */}
